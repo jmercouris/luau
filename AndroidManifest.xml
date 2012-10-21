@@ -6,8 +6,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
  	<uses-feature android:name="android.hardware.camera" />
  	<uses-feature android:name="android.hardware.camera.autofocus" />
-    
-
+ 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
@@ -16,6 +17,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <uses-library android:name="com.google.android.maps"/>
+        
         
         <activity 
             android:screenOrientation="portrait"
@@ -28,5 +31,14 @@
             </intent-filter>
         </activity>
     </application>
+    
+    <com.google.android.maps.MapView
+ 			android:layout_width="fill_parent"
+ 			android:layout_height="fill_parent"
+		 	android:enabled="true"
+ 			android:clickable="true"
+ 			android:apiKey="0GGm0YK2fudyUHOQKhxENKrgWVBlQhC7DXJttRg"
+ 		/>
+    
 	
 </manifest>

@@ -9,6 +9,7 @@ import android.hardware.Camera;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.Window;
+import android.widget.TextView;
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -21,6 +22,7 @@ public class MainActivity extends Activity
     private Camera camera=null;
     private boolean inPreview=false;
     private boolean cameraConfigured=false;
+    private static TextView coordinatesTextView;
 
     @SuppressLint({ "NewApi", "NewApi", "NewApi" }) @Override
     public void onCreate(Bundle savedInstanceState) 
@@ -33,6 +35,13 @@ public class MainActivity extends Activity
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
           }
+        
+        // /////////////////////////////////////////////////////////////////////////
+     	// Capture UI Elements
+     	// /////////////////////////////////////////////////////////////////////////
+        coordinatesTextView = (TextView) findViewById(R.id.coordinates);
+        coordinatesTextView.setText("0.0");
+        
 
 		// /////////////////////////////////////////////////////////////////////////
 		// Capture XML
@@ -56,6 +65,16 @@ public class MainActivity extends Activity
         previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
     }
+
+	// /////////////////////////////////////////////////////////////////////////
+	// Update Location
+	// /////////////////////////////////////////////////////////////////////////
+    public static void updateCoordinatesUI(double latitude, double longitude)
+    {
+    	coordinatesTextView.setText("" + latitude + "," + longitude);
+    	
+    }
+    
 
 	// /////////////////////////////////////////////////////////////////////////
 	// On Create
