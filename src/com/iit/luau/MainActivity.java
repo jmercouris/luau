@@ -32,6 +32,7 @@ public class MainActivity extends Activity
     private boolean cameraConfigured=false;
     private static TextView coordinatesTextView;
     private static ImageButton cameraButton;
+    private static ImageButton hereButton;
     private static EditText editTextLookup;
     private static Button lookupButton;
     private LocationSearch searcher;
@@ -57,6 +58,9 @@ public class MainActivity extends Activity
      	// /////////////////////////////////////////////////////////////////////////
         coordinatesTextView = (TextView) findViewById(R.id.coordinates);
         coordinatesTextView.setText("0.1");
+        editTextLookup = (EditText) findViewById(R.id.editText1);
+        lookupButton = (Button) findViewById(R.id.button1);
+        hereButton = (ImageButton) findViewById(R.id.hereButton);
         cameraButton = (ImageButton) findViewById(R.id.CameraButton);
         cameraButton.setOnClickListener(new OnClickListener() 
         {
@@ -64,13 +68,36 @@ public class MainActivity extends Activity
 			{
 				String appendURL = "";
 				try{
-				appendURL = searcher.performSearch(c, 3);
+				appendURL = searcher.performSearch(true);
 				}catch(Exception e){}
-				CalendarWebView.getAlert(c, "https://www.google.com/calendar/embed?src=jd2g7c4e3fol3k687i9n4nmdt4%40group.calendar.google.com&ctz=America/Chicago" + "&q=" + appendURL, "IIT");
+				CalendarWebView.getAlert(c, "https://www.google.com/calendar/embed?src=jd2g7c4e3fol3k687i9n4nmdt4%40group.calendar.google.com&ctz=America/Chicago" + "&q=" + appendURL, appendURL);
 			}
 			});
-        
-        
+        hereButton.setOnClickListener(new OnClickListener() 
+        {
+			public void onClick(View v) 
+			{
+				String appendURL = "";
+				try{
+				appendURL = searcher.performSearch(false);
+				}catch(Exception e){}
+				CalendarWebView.getAlert(c, "https://www.google.com/calendar/embed?src=jd2g7c4e3fol3k687i9n4nmdt4%40group.calendar.google.com&ctz=America/Chicago" + "&q=" + appendURL, "here");
+			}
+        });
+        lookupButton.setOnClickListener(new OnClickListener() 
+        {
+        	public void onClick(View v)
+        	{
+        		System.out.print("i'm gettin clicked on");
+        		String appendURL = "";
+				try{
+					String lookup = (String) editTextLookup.getText().toString();
+        			appendURL = searcher. performSearch(c, lookup);
+				}catch(Exception e){}
+				CalendarWebView.getAlert(c, "https://www.google.com/calendar/embed?src=jd2g7c4e3fol3k687i9n4nmdt4%40group.calendar.google.com&ctz=America/Chicago" + "&q=" + appendURL, appendURL);
+        	}
+        });
+			
         // /////////////////////////////////////////////////////////////////////////
      	// Capture Location
      	// /////////////////////////////////////////////////////////////////////////        
