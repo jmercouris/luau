@@ -12,7 +12,7 @@ public class Place {
   
  @Key
  public String reference;
- 
+  
  @Key
  public String[] types;
  
