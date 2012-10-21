@@ -1,8 +1,10 @@
 package com.iit.luau;
 
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -10,6 +12,12 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        // Submit Button
+        TextView textView;
+        textView = (TextView) findViewById(R.id.textField);
+        textView.setText("lolol");
+
     }
 
     @Override
